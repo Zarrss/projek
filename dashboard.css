@@ -1,0 +1,71 @@
+.nav {
+    margin-left: 10px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none; /* Remove bullet points from list */
+    padding: 0; /* Remove default padding */
+}
+
+.nav-item {
+    margin-left : 25px; /* Space out items */
+    font-size: 25px;
+}
+
+.nav-link {
+    color: rgb(127, 127, 127);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Pushes the navbar-right content to the far right */
+}
+
+.user-logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sBar {
+    width: 170px;
+    height: 90%;
+    background-color: #333; /* Background color for the sidebar */
+    padding-top: 20px;
+    position: fixed; /* Make it fixed on the screen */
+    top: 0;
+    left: 0;
+    margin-top: 90px;
+}
+
+.sBar ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.sBar ul li {
+    margin: 10px 0;
+}
+
+.sBar ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.sBar ul li a i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.sBar ul li a:hover {
+    background-color: #575757; /* Background color on hover */
+}
