@@ -26,18 +26,19 @@
 }
 
 .user-logo {
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     margin-right: 15px;
+    margin-bottom: 15px;
 }
 
 .sBar {
     width: 170px;
     height: 90%;
-    background-color: #333; /* Background color for the sidebar */
+    background-color: #8e8e8e; /* Background color for the sidebar */
     padding-top: 20px;
-    position: fixed; /* Make it fixed on the screen */
+    position: absolute; /* Make it fixed on the screen */
     top: 0;
     left: 0;
     margin-top: 90px;
@@ -55,7 +56,7 @@
 
 .sBar ul li a {
     text-decoration: none;
-    color: white;
+    color: rgb(237, 236, 236);
     padding: 10px;
     display: flex;
     align-items: center;
@@ -69,3 +70,143 @@
 .sBar ul li a:hover {
     background-color: #575757; /* Background color on hover */
 }
+
+/* Style for the colored-box */
+.colored-box {
+    background-color:#8e8e8e;  /* Background color for the box */
+    padding: 10px;
+    margin-top: -175px; /* Space below the navbar */
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Positioning */
+    width: 80px; /* Adjust width as needed */
+    margin-left: auto; /* Align to the right */
+    margin-right: -1px; /* Adjust as needed */
+    height: 685px;
+}
+
+/* Ensure it appears below the navbar */
+#navbar + .colored-box {
+    margin-top: 20px; /* Adjust this value to position it correctly below the navbar */
+}
+
+.notification-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.notification-button {
+    background-color: #adadad; /* Example background color */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 15px;
+    cursor: pointer;
+    position: relative;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.notification-button:hover {
+    background-color: #e64a19; /* Darken on hover */
+}
+
+.badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Table Container */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Table */
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin-top: 35px;
+    margin-left: 250px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #a4a7ab;
+    color: white;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+td {
+    white-space: nowrap;
+}
+
+/* Checkbox Column */
+td.checkbox-column {
+    text-align: center;
+    width: 30px;
+}
+
+/* Actions Column */
+.actions-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.actions-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Actions Menu */
+.actions-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+    width: 120px;
+}
+
+.actions-menu button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.actions-menu button:hover {
+    background-color: #0056b3;
+}
+
+/* Show Actions Menu on Hover */
+td:hover .actions-menu {
+    display: block;
+}
+
+
