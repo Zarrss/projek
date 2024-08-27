@@ -75,7 +75,7 @@
 .colored-box {
     background-color:#8e8e8e;  /* Background color for the box */
     padding: 10px;
-    margin-top: -175px; /* Space below the navbar */
+    margin-top: -440px; /* Space below the navbar */
     
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     
@@ -88,7 +88,7 @@
 
 /* Ensure it appears below the navbar */
 #navbar + .colored-box {
-    margin-top: 20px; /* Adjust this value to position it correctly below the navbar */
+    margin-top: -20px; /* Adjust this value to position it correctly below the navbar */
 }
 
 .notification-container {
@@ -130,8 +130,9 @@
 .table-container {
     width: 100%;
     overflow-x: auto;
-    max-width: 1200px;
-    max-height: 300px;
+    margin-top: -2%;
+    margin-right: -3%;
+
 }
 
 /* Table */
@@ -210,5 +211,201 @@ td.checkbox-column {
 td:hover .actions-menu {
     display: block;
 }
+/* Table Container */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    position: relative; /* Allows for absolute positioning of child elements */
+    margin-left: 8%;
+}
+
+/* Table */
+table {
+    width: 70%; /* Sesuaikan lebar tabel */
+    border-collapse: collapse;
+    margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rectangle-box {
+    width: 100%; /* Adjust width to match table width */
+    height: 150px; /* Reduced height */
+    background-color: #ddd; /* Background color for the box */
+    margin: 20px auto; /* Vertical margin for spacing */
+    margin-top: -11%; /* Adjust to move the box up slightly */
+    margin-right: 25%;
+}
 
 
+/* Style for table inside rectangle-box */
+.rectangle-box .table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rectangle-box .table th, .rectangle-box .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.rectangle-box .table th {
+    background-color: #a4a7ab;
+    color: white;
+}
+
+.rectangle-box .table td {
+    white-space: nowrap;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.side-nav {
+    width: 200px;
+    background-color: #f9f9f9;
+    padding-top: 20px;
+    height: auto; /* Tinggi otomatis sesuai konten */
+    border-right: 2px solid #f0f0f0;
+    margin-right: -42%; /* Memberikan jarak antara sidebar dan rectangle box */
+    margin-left: 230px; /* Menambahkan margin kiri untuk menggeser ke kanan */
+    margin-bottom: -60%; /* Mengurangi margin-bottom untuk mengangkat elemen ke atas */
+    margin-top: -416px; /* Tambahkan margin-top negatif untuk lebih mengangkat elemen */
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    color: #b0b0b0;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nav-item img {
+    margin-right: 10px;
+    width: 18px;  /* Ukuran ikon yang lebih kecil */
+    height: 18px; /* Ukuran ikon yang lebih kecil */
+}
+
+.nav-item.active {
+    color: #ff4c4c;
+    font-weight: bold;
+    border-left: 4px solid #ff4c4c;
+    background-color: #fff;
+}
+
+.nav-item img.active-icon {
+    filter: invert(45%) sepia(100%) saturate(3800%) hue-rotate(353deg) brightness(105%) contrast(98%);
+}
+
+.project-manager-title {
+    font-size: 24px; /* Adjust size as needed */
+    font-weight: bold; /* Make text bold */
+    
+    margin: 20px auto; /* Margin for spacing */
+    color: #333; /* Adjust text color */
+    margin-top: 120%;
+}
+/* Add this CSS for the project manager title */
+.project-manager-title {
+    font-size: 24px;
+    font-weight: bold;
+    
+    margin: 20px auto;
+    color: #333;
+    
+}
+
+.rectangle-box {
+    width: 50%; /* Adjust width to match table width */
+    height: 150px; /* Reduced height */
+    background-color: #ddd; /* Background color for the box */
+    margin: 20px auto; /* Vertical margin for spacing */
+    margin-top: 2%; /* Adjust to move the box up slightly */
+    margin-right: 25%;
+}
+
+
+
+.table-container {
+    width: 100%;
+    text-align: center; /* Center the title */
+}
+
+/* Title container to center the title */
+.title-container {
+    margin: 20px auto; /* Add space around the title */
+}
+
+/* Style for custom-table */
+table.custom-table {
+width: 70%; /* Width of the container */
+border-collapse: collapse; /* Collapses borders between cells */
+background-color: #ffffff; /* Background color of the table */
+margin-top: 5%; /* Margin top */
+margin-left: auto; /* Center the table horizontally */
+margin-right: auto; /* Center the table horizontally */
+}
+
+table.custom-table th,
+table.custom-table td {
+border: none; /* Removes borders from cells */
+color: #000000; /* Sets text color to black */
+background-color: #ffffff; /* Background color of cells */
+padding: 10px; /* Consistent padding inside each cell */
+text-align: center; /* Centers text in cells */
+}
+
+table.custom-table th {
+font-weight: bold; /* Makes header text bold */
+}
+
+/* Specific text color for headers */
+table.custom-table th.system-admin {
+padding-left: 200px; /* Moves the "system admin" text slightly to the right */
+}
+
+table.custom-table th.project-manager {
+padding-left: 20px; /* Adjust padding to bring "project manager" closer to "system admin" */
+}
+
+table.custom-table th.project-engineer {
+padding-left: 20px; /* Adjust padding to bring "project engineer" closer to "project manager" */
+}
+
+/* Style for clickable links in headers */
+table.custom-table th a {
+text-decoration: none; /* Removes underline from links */
+color: inherit; /* Inherit the color from the th element */
+font-weight: bold; /* Makes link text bold */
+}
+
+table.custom-table th.project-manager a {
+color: red; /* Sets text color to red for "project manager" */
+padding-right: 10px;
+}
+
+table.custom-table th.project-engineer a {
+color: green; /* Sets text color to green for "project engineer" */
+padding-right: 180px;
+}
+
+table.custom-table th a:hover {
+text-decoration: underline; /* Adds underline on hover */
+}
+
+/* Adjust spacing between headers */
+table.custom-table th {
+padding: 10px; /* Ensure headers are close together */
+}
+
+/* Remove extra spacing between headers */
+table.custom-table tr th {
+padding: 0; /* Remove default padding */
+margin: 0; /* Remove any margin */
+}
