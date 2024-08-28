@@ -27,60 +27,63 @@
                 </li>
             </ul>
 
-              <!-- table -->
-              <div class="table-container">
-                <table id="dataTable">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" id="selectAll"></th>
-                            <th>No TSF</th>
-                            <th>Date</th>
-                            <th>Target Date</th>
-                            <th>Work Category</th>
-                            <th>Divisi</th>
-                            <th>Customer</th>
-                            <th>End Customer</th>
-                            <th>Judul</th>
-                            <th>Status</th>
-                            <th>Actions</th> <!-- Add this column -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr data-row-id='{$row['id']}'>
-                                    <td><input type='checkbox' class='row-checkbox'></td>
-                                    <td>{$row['no_tsrf']}</td>
-                                    <td>{$row['date']}</td>
-                                    <td>{$row['target_date']}</td>
-                                    <td>{$row['work_category']}</td>
-                                    <td>{$row['divisi']}</td>
-                                    <td>{$row['costumer']}</td>
-                                    <td>{$row['end_costumer']}</td>
-                                    <td>{$row['judul']}</td>
-                                    <td>{$row['status']}</td>
-                                    <td>
-                                        <button class='actions-btn' data-id='{$row['id']}'>
-                                            <img src='elipses.png' alt='Actions'>
-                                        </button>
-                                        <div class='actions-menu' data-id='{$row['id']}'>
-                                            <button class='add-btn' data-id='{$row['id']}'>Insert</button>
-                                        
-                                        </div>
-                                        
-                                    </td>
-                                </tr>";
-                            }
-                            // <button class='edit-btn'>Edit</button>
-                            // <button class='deactivate-btn'>Deactivate</button>
-                        } else {
-                            echo "<tr><td colspan='11'>No data available</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+
+            <!-- table -->
+            
+            
+            <div class="table-container">
+    <table id="dataTable" class="editable-table">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="selectAll"></th>
+                <th>TSF</th>
+                <th>Date</th>
+                <th>Target Date </th>
+                <th>WC</th>
+                <th>Divisi</th>
+                <th>Customer</th>
+                <th>End Customer</th>
+                <th>Judul</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr data-row-id='{$row['id']}'>
+                        <td class='checkbox-column'><input type='checkbox' class='row-checkbox'></td>
+                        <td contenteditable='true'>{$row['no_tsrf']}</td>
+                        <td contenteditable='true'>{$row['date']}</td>
+                        <td contenteditable='true'>{$row['target_date']}</td>
+                        <td contenteditable='true'>{$row['work_category']}</td>
+                        <td contenteditable='true'>{$row['divisi']}</td>
+                        <td contenteditable='true'>{$row['costumer']}</td>
+                        <td contenteditable='true'>{$row['end_costumer']}</td>
+                        <td contenteditable='true'>{$row['judul']}</td>
+                        <td contenteditable='true'>{$row['status']}</td>
+                        <td class='actions-column'>
+                            <button class='actions-btn' data-id='{$row['id']}'>
+                                <img src='elipses.png' alt='Actions'>
+                            </button>
+                            <div class='actions-menu' data-id='{$row['id']}'>
+                                <buttqon class='add-btn' data-id='{$row['id']}'>Insert</button>
+                            </div>
+                        </td>
+                    </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='11'>No data available</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
+
+
+
 
 
             <!-- menu project -->
@@ -119,7 +122,48 @@
                 </div>
             </div>
 
+        
 
+        <!-- sidebar -->
+     <div class="sidebar">
+    <ul class="menu">
+        <li class="menu-item active">
+            <span class="icon user-icon"></span>
+            <span class="text">manager 1</span>
+        </li>
+        <li class="menu-item">
+            <span class="icon chart-icon"></span>
+            <span class="text">manager 2</span>
+        </li>
+        <li class="menu-item">
+            <span class="icon docs-icon"></span>
+            <span class="text">manager 3</span>
+        </li>
+        <li class="menu-item">
+            <span class="icon setting-icon"></span>
+            <span class="text">manager 4</span>
+        </li>
+    </ul>
+</div>
+
+<!-- role selector -->
+<div class="role-selector">
+    <div class="role-item active">
+        <img src="logoside.png" alt="Project Manager Icon">
+        <span class="role-text">project manager</span>
+    </div>
+    <div class="role-item">
+        <img src="logoside.png" alt="Engineer Icon">
+        <span class="role-text">engineer</span>
+    </div>
+</div>
+
+ <!-- Rectangle Box -->
+ <div class="rectangle-box"></div>
+    </div>
+
+            
+    <script src="script.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

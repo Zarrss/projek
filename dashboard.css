@@ -1,15 +1,20 @@
 .nav {
-    margin-left: 10px;
-    margin-top: 15px;
+    margin-top: -8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style-type: none; /* Remove bullet points from list */
     padding: 0; /* Remove default padding */
+    position: fixed;
+    background-color: #fbfcfc; /* Light background color */
+    border-bottom: 1px solid #ddd; /* Optional: border to define the bottom of the navbar */
+    width: calc(100% - 20px); /* Adjust width to fit inside the viewport with margins */
+    width: 1540px;
+    height: 100px;
 }
 
 .nav-item {
-    margin-left : 25px; /* Space out items */
+    margin-left: 25px; /* Space out items */
     font-size: 25px;
 }
 
@@ -26,23 +31,40 @@
 }
 
 .user-logo {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    margin-right: 15px;
-    margin-bottom: 15px;
+    position: fixed;
+    top: 30px;
+    right: 30px; /* Adjust position from the right edge */
+    margin: 0; /* Remove margins */
 }
 
+
+/* Positioning sidebar */
 .sBar {
     width: 170px;
-    height: 90%;
-    background-color: #8e8e8e; /* Background color for the sidebar */
+    height: 87%; /* Adjusted to fill height */
+    background-color:  #81b7ff;
     padding-top: 20px;
-    position: absolute; /* Make it fixed on the screen */
+    position: fixed; /* Fixed position on the screen */
     top: 0;
     left: 0;
-    margin-top: 90px;
+    margin-top: 100px; /* Adjust as necessary */
 }
+
+/* Adjust .sidebar if necessary */
+.sidebar {
+    width: 150px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    margin-left: 170px; /* Position to the right of .sBar */
+    margin-top: 0;
+    position: fixed; /* Fixed position on the screen */
+    height: 100%; /* Full height */
+}
+
 
 .sBar ul {
     list-style-type: none; /* Remove bullet points */
@@ -56,7 +78,7 @@
 
 .sBar ul li a {
     text-decoration: none;
-    color: rgb(237, 236, 236);
+    color: rgba(255, 255, 255, 0.674);
     padding: 10px;
     display: flex;
     align-items: center;
@@ -73,17 +95,18 @@
 
 /* Style for the colored-box */
 .colored-box {
-    background-color:#8e8e8e;  /* Background color for the box */
+    background-color: #81b7ff;  /* Background color for the box */
     padding: 10px;
-    margin-top: -175px; /* Space below the navbar */
-    
+    margin: 0; /* Remove existing margins */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    
+
     /* Positioning */
     width: 80px; /* Adjust width as needed */
-    margin-left: auto; /* Align to the right */
-    margin-right: -1px; /* Adjust as needed */
-    height: 685px;
+    position: fixed; /* Fixed position to stay on the right side */
+    right: 0; /* Align to the right edge */
+    top: 0; /* Align to the top edge */
+    height: 87vh; /* Full viewport height */
+    top: 100px;
 }
 
 /* Ensure it appears below the navbar */
@@ -98,7 +121,7 @@
 }
 
 .notification-button {
-    background-color: #adadad; /* Example background color */
+    background-color: #81b7ff; /* Example background color */
     border: none;
     color: white;
     padding: 10px 15px;
@@ -117,7 +140,7 @@
 .badge {
     position: absolute;
     top: -10px;
-    right: -10px;
+    right: -9px;
     background-color: red;
     color: white;
     border-radius: 50%;
@@ -127,45 +150,89 @@
 }
 
 /* Table Container */
+/* Table Container */
 .table-container {
-    width: 100%;
+    width: calc(100% - 0px); /* Adjust container width */
     overflow-x: auto;
-    max-width: 1200px;
-    max-height: 300px;
+    max-height: 230px;
+    position: fixed;
+    top: 120px;
+    right: 300px;
+    background: #ffffff;
+
+    border-radius: 5px;
+    max-width: 910px;
 }
 
 /* Table */
 table {
-    width: 70%;
+    width: 80%;
     border-collapse: collapse;
-    margin-top: 35px;
-    margin-left: 250px;
+    table-layout: auto; /* Let the table adjust column widths */
 }
 
 th, td {
-    padding: 10px;
+    padding: 13px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    word-wrap: break-word; /* Allow long words to wrap to next line */
 }
 
 th {
-    background-color: #a4a7ab;
+    background-color: #81b7ff;
     color: white;
     font-weight: normal;
     white-space: nowrap;
+    padding: 10px;
+  
 }
 
-td {
-    white-space: nowrap;
+/* Ensure column width for better readability */
+th:nth-child(1), td.checkbox-column {
+    width: 25px;
 }
 
-/* Checkbox Column */
-td.checkbox-column {
-    text-align: center;
-    width: 30px;
+th:nth-child(2), td:nth-child(2) {
+    width: 100px; /* Adjust as needed */
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 120px; /* Adjust as needed */
+}
+
+th:nth-child(4), td:nth-child(4) {
+    width: 120px; /* Adjust as needed */
+}
+
+th:nth-child(5), td:nth-child(5) {
+    width: 100px; /* Adjust as needed */
+}
+
+th:nth-child(6), td:nth-child(6) {
+    width: 100px; /* Adjust as needed */
+}
+
+th:nth-child(7), td:nth-child(7) {
+    width: 150px; /* Adjust as needed */
+}
+
+th:nth-child(8), td:nth-child(8) {
+    width: 150px; /* Adjust as needed */
+}
+
+th:nth-child(9), td:nth-child(9) {
+    width: 200px; /* Adjust as needed */
+}
+
+th:nth-child(10), td:nth-child(10) {
+    width: 100px; /* Adjust as needed */
 }
 
 /* Actions Column */
+.actions-column {
+    position: relative;
+}
+
 .actions-btn {
     background: none;
     border: none;
@@ -188,6 +255,8 @@ td.checkbox-column {
     padding: 10px;
     border-radius: 5px;
     width: 120px;
+    top: 100%;
+    left: 0;
 }
 
 .actions-menu button {
@@ -206,9 +275,219 @@ td.checkbox-column {
     background-color: #0056b3;
 }
 
-/* Show Actions Menu on Hover */
-td:hover .actions-menu {
+/* Show Actions Menu on Click */
+.actions-btn:focus + .actions-menu, .actions-menu:hover {
     display: block;
 }
+
+
+
+.project-manager-title {
+    font-size: 24px; /* Adjust size as needed */
+    font-weight: bold; /* Make text bold */
+    margin: 20px auto; /* Margin for spacing */
+    color: #333; /* Adjust text color */
+    margin-top: 120%;
+}
+/* Add this CSS for the project manager title */
+.project-manager-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px auto;
+    color: #333;
+    
+}
+
+.sidebar {
+    width: 150px;
+    padding: 20px;
+    position: fixed;
+    top: 400px;
+    background-color: #f8f9fa; /* Example background color */
+}
+
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 31px 0;
+    color: #b0b0b0;
+    cursor: pointer;
+}
+
+.menu-item.active {
+    color: #007bff;
+}
+
+.menu-item .icon {
+    margin-right: 10px;
+}
+
+.menu-item.active .icon {
+    color: #ff4c4c;
+}
+
+.user-icon::before {
+    content: "👤";
+}
+
+.chart-icon::before {
+    content: "📊";
+}
+
+.docs-icon::before {
+    content: "📄";
+}
+
+.setting-icon::before {
+    content: "⚙️";
+}
+
+.text {
+    font-size: 14px;
+}
+
+.menu-item:hover {
+    color: #ff4c4c;
+}
+
+.menu-item.active .text {
+    font-weight: bold;
+}
+
+.role-selector {
+    display: flex;
+    align-items: center;
+    margin-left: 630px;
+    margin-top: 355px;
+    position: fixed;
+}
+
+.role-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.role-item img {
+    max-width: 21px; /* Atur lebar maksimum logo */
+    height: auto; /* Pertahankan proporsi asli */
+    margin-right: 10px;
+}
+
+
+.role-item.active .role-text {
+    color:#007bff;
+    font-size: 15px;
+}
+
+.role-item:not(.active) .role-text {
+    color: rgb(95, 95, 95);
+    font-size: 15px;
+}
+
+.role-item.active img {
+    filter: grayscale(0);
+}
+
+.role-item:not(.active) img {
+    filter: grayscale(100%);
+}
+
+.rectangle-box {
+    width: 70%; /* Adjust width to match table width */
+    max-height: 370px; /* Set max-height to enable scrolling */
+    background-color: #dddddd5d; /* Background color for the box */
+    margin: 20px auto; /* Vertical margin for spacing */
+    margin-left: 330px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-sizing: border-box; /* Ensure padding and border are included in the width and height */
+    padding: 2px 2px;
+    position: fixed;
+    margin-top: 395px;
+}
+
+
+
+/* Style for table inside rectangle-box */
+.rectangle-box .table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rectangle-box .table th, .rectangle-box .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.rectangle-box .table th {
+    background-color: #a4a7ab;
+    color: white;
+}
+
+.rectangle-box .table td {
+    white-space: nowrap;
+}
+
+.accordion {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.accordion-header {
+    background-color: #f1f1f1;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+
+.accordion-body {
+    display: none;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+}
+
+.accordion-body.active {
+    display: block;
+}
+
+
+.actions-menu {
+    display: none; /* Initially hidden */
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 4px;
+    min-width: 120px;
+}
+
+.actions-menu button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.actions-menu button:hover {
+    background-color: #0056b3;
+}
+
 
 
