@@ -31,14 +31,14 @@
             <!-- table -->
             
             
-            <div class="table-container">
+           <div class="table-container">
     <table id="dataTable" class="editable-table">
         <thead>
             <tr>
                 <th><input type="checkbox" id="selectAll"></th>
                 <th>TSF</th>
                 <th>Date</th>
-                <th>Target Date </th>
+                <th>Target Date</th>
                 <th>WC</th>
                 <th>Divisi</th>
                 <th>Customer</th>
@@ -68,7 +68,8 @@
                                 <img src='elipses.png' alt='Actions'>
                             </button>
                             <div class='actions-menu' data-id='{$row['id']}'>
-                                <buttqon class='add-btn' data-id='{$row['id']}'>Insert</button>
+                                <button class='insert-btn'>Insert</button>
+                                <button class='deactivate-btn'>Deactivate</button>
                             </div>
                         </td>
                     </tr>";
@@ -79,7 +80,9 @@
             ?>
         </tbody>
     </table>
+    
 </div>
+
 
 
 

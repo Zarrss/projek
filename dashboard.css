@@ -152,21 +152,20 @@
 /* Table Container */
 /* Table Container */
 .table-container {
-    width: calc(100% - 0px); /* Adjust container width */
+    width: calc(100% - 10px); /* Adjust container width */
     overflow-x: auto;
-    max-height: 230px;
+    max-height: 500px;
     position: fixed;
     top: 120px;
-    right: 300px;
+    right: 115px;
     background: #ffffff;
-
     border-radius: 5px;
-    max-width: 910px;
+    max-width: 1200px;
 }
 
 /* Table */
 table {
-    width: 80%;
+    width: 100%;
     border-collapse: collapse;
     table-layout: auto; /* Let the table adjust column widths */
 }
@@ -428,7 +427,7 @@ th:nth-child(10), td:nth-child(10) {
 }
 
 .rectangle-box .table th {
-    background-color: #a4a7ab;
+    background-color: #fbfbfb;
     color: white;
 }
 
@@ -437,24 +436,24 @@ th:nth-child(10), td:nth-child(10) {
 }
 
 .accordion {
-    border: 1px solid #ccc;
+    border: 1px solid #ecebeb;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
 .accordion-header {
-    background-color: #f1f1f1;
+    background-color: #ecebeb;
     padding: 10px;
     cursor: pointer;
     font-weight: bold;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ecebeb;
 }
 
 .accordion-body {
     display: none;
     padding: 10px;
-    background-color: #fff;
-    border-top: 1px solid #ccc;
+    background-color:  #ecebeb;
+    border-top: 1px solid  #ecebeb;
 }
 
 .accordion-body.active {
@@ -462,29 +461,58 @@ th:nth-child(10), td:nth-child(10) {
 }
 
 
-.actions-menu {
-    display: none; /* Initially hidden */
-    position: absolute;
+/* Actions Column */
+/* Actions Column */
+.actions-column {
+    position: relative;
+}
+
+.actions-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.actions-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Actions Menu */
+#actionsMenu {
+    display: none;
+    position: fixed; /* Position fixed to keep it in view */
     background-color: white;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1;
     padding: 10px;
-    border-radius: 4px;
-    min-width: 120px;
+    border-radius: 5px;
+    width: 120px;
+    right: 20px; /* Adjust position as needed */
+    top: 20px;   /* Adjust position as needed */
 }
 
-.actions-menu button {
+#actionsMenu button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: none;
     background-color: #007bff;
     color: white;
-    border: none;
-    padding: 8px 12px;
-    text-align: left;
-    width: 100%;
+    border-radius: 3px;
     cursor: pointer;
-    margin-bottom: 5px;
-    border-radius: 4px;
+    text-align: left;
 }
 
-.actions-menu button:hover {
+#actionsMenu button:hover {
     background-color: #0056b3;
 }
+
+
+/* Show Actions Menu on Hover */
+.actions-column:hover .actions-menu {
+    display: block;
+}
+
+

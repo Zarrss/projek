@@ -28,7 +28,7 @@ if (isset($data['id']) && isset($data['column']) && isset($data['value'])) {
     error_log("Received data: ID = $id, Column = $column, Value = $value");
 
     // Validate column name to prevent SQL injection
-    $allowed_columns = ['no_tsrf', 'date', 'target_date', 'work_category', 'divisi', 'customer', 'end_customer', 'judul', 'status'];
+    $allowed_columns = ['no_tsrf', 'date', 'target_date', 'work_category', 'divisi', 'costumer', 'end_costumer', 'judul', 'status'];
     if (!in_array($column, $allowed_columns)) {
         echo json_encode(['success' => false, 'error' => 'Invalid column name']);
         exit();
@@ -49,6 +49,7 @@ if (isset($data['id']) && isset($data['column']) && isset($data['value'])) {
 } else {
     echo json_encode(['success' => false, 'error' => 'Invalid input']);
 }
+
 
 $conn->close();
 ?>

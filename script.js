@@ -3,12 +3,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const rowCheckboxes = document.querySelectorAll('.row-checkbox');
     const rectangleBox = document.querySelector('.rectangle-box');
 
+    // Update rectangle box content when a row checkbox is changed
     rowCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function () {
             updateRectangleBox();
         });
     });
 
+    // Select or deselect all checkboxes when the "Select All" checkbox is changed
     selectAllCheckbox.addEventListener('change', function () {
         const isChecked = selectAllCheckbox.checked;
         rowCheckboxes.forEach(checkbox => {
@@ -17,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateRectangleBox();
     });
 
+    // Function to update rectangle box content based on selected rows
     function updateRectangleBox() {
         rectangleBox.innerHTML = '';
         const checkedRows = document.querySelectorAll('.row-checkbox:checked');
@@ -42,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
             rectangleBox.insertAdjacentHTML('beforeend', accordionItem);
         });
 
+        // Toggle accordion body visibility when header is clicked
         const accordionHeaders = document.querySelectorAll('.accordion-header');
         accordionHeaders.forEach(header => {
             header.addEventListener('click', function () {
@@ -51,13 +55,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Inline editing with contenteditable cells
     document.querySelectorAll('.editable-table td[contenteditable]').forEach(cell => {
         cell.addEventListener('blur', function () {
             const row = this.closest('tr');
             const id = row.dataset.rowId;
             const columnIndex = this.cellIndex;
             const newValue = this.innerText;
-    
+
             const columns = [
                 'no_tsrf', 'date', 'target_date', 'work_category', 'divisi',
                 'costumer', 'end_costumer', 'judul', 'status'
@@ -65,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Adjust index for editable columns (starting from columnIndex 1)
             const columnName = columns[columnIndex - 1];
-    
+
             if (columnName) {
                 fetch('update_table.php', {
                     method: 'POST',
@@ -93,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Add a new row when "Insert" button is clicked
     document.getElementById('insertButton').addEventListener('click', function() {
         var tableBody = document.querySelector('#dataTable tbody');
         var newRow = document.createElement('tr');
@@ -109,4 +115,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
         tableBody.appendChild(newRow);
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const actionsBtns = document.querySelectorAll('.actions-btn');
+        const actionsMenu = document.getElementById('actionsMenu');
+    
+        actionsBtns.forEach(button => {
+            button.addEventListener('mouseover', function() {
+                actionsMenu.style.display = 'block'; // Show menu
+                const rect = button.getBoundingClientRect();
+                actionsMenu.style.left = `${rect.right}px`;
+                actionsMenu.style.top = `${rect.top}px`;
+            });
+    
+            button.addEventListener('mouseout', function() {
+                actionsMenu.style.display = 'none'; // Hide menu
+            });
+        });
+    
+        // Optional: Hide menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!actionsMenu.contains(event.target) && !event.target.classList.contains('actions-btn')) {
+                actionsMenu.style.display = 'none';
+            }
+        });
+    });
+    
 });
