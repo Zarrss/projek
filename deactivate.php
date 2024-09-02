@@ -1,39 +1,23 @@
 <?php
-header('Content-Type: application/json');
+include("db_connect.php");
 
-// Get JSON input from the request
-$input = json_decode(file_get_contents('php://input'), true);
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']); // Pastikan ID adalah integer
 
-// Check if IDs are received and are an array
-if (isset($input['ids']) && is_array($input['ids'])) {
-    $ids = $input['ids'];
+    // Gunakan prepared statement untuk mencegah SQL injection
+    $stmt = $db->prepare("UPDATE tsf_data SET deleted_at = CURDATE() WHERE id = ?");
+    $stmt->bind_param("i", $id);
 
-    // Connect to the database
-    $mysqli = new mysqli('localhost', 'username', 'password', 'database');
-
-    // Check the database connection
-    if ($mysqli->connect_error) {
-        echo json_encode(['success' => false, 'message' => 'Database connection failed']);
-        exit;
-    }
-
-    // Escape IDs to prevent SQL Injection
-    $ids = array_map([$mysqli, 'real_escape_string'], $ids);
-    $id_list = implode(',', $ids);
-
-    // Query to update rows status to 'deactivated'
-    $query = "UPDATE tsf_data SET status = 'deactivated' WHERE id IN ($id_list)";
-    $result = $mysqli->query($query);
-
-    if ($result) {
-        echo json_encode(['success' => true]);
+    if ($stmt->execute()) {
+        echo "Data successfully deactivated.";
     } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to update database']);
+        echo "Error: " . $stmt->error;
     }
 
-    // Close the database connection
-    $mysqli->close();
+    $stmt->close();
 } else {
-    echo json_encode(['success' => false, 'message' => 'No IDs provided']);
+    echo "No ID specified.";
 }
+
+$db->close();
 ?>

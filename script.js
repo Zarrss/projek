@@ -186,21 +186,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Deactivate button functionality
-        document.getElementById('deactivateBtn').addEventListener('click', function() {
-        // Mengambil semua kolom dengan class 'deactivate-column'
-        var columns = document.querySelectorAll('.deactivate-column');
-        
-        // Menyembunyikan kolom
-        columns.forEach(function(column) {
-            column.style.display = 'none';
-        });
-        
-        // Menyembunyikan sel pada setiap baris
-        var rows = document.querySelectorAll('#dataTable td');
-        rows.forEach(function(cell) {
-            if (cell.classList.contains('deactivate-column')) {
-                cell.style.display = 'none';
-            }
-        });
-    });
+    function deactivate(id) {
+        if (confirm("Are you sure you want to deactivate this item?")) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "deactivate.php?id=" + encodeURIComponent(id), true);
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    alert("Item deactivated successfully.");
+                    window.location.href = 'dashboard.php?notification=deactivated';
+                } else {
+                    alert("Error: " + xhr.statusText);
+                }
+            };
+            xhr.onerror = function () {
+                alert("Request failed.");
+            };
+            xhr.send();
+        }
+    }
 });
