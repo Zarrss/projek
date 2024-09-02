@@ -10,12 +10,13 @@
     border-bottom: 1px solid #ddd; /* Optional: border to define the bottom of the navbar */
     width: calc(100% - 20px); /* Adjust width to fit inside the viewport with margins */
     width: 1540px;
-    height: 100px;
+    height: 75px;
 }
 
 .nav-item {
     margin-left: 25px; /* Space out items */
     font-size: 25px;
+    margin-top: 10px;
 }
 
 .nav-link {
@@ -31,11 +32,11 @@
 }
 
 .user-logo {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     position: fixed;
-    top: 30px;
+    top: 20px;
     right: 30px; /* Adjust position from the right edge */
     margin: 0; /* Remove margins */
 }
@@ -43,26 +44,14 @@
 
 /* Positioning sidebar */
 .sBar {
-    width: 170px;
-    height: 87%; /* Adjusted to fill height */
+    width: 130px;
+    height: 92%; /* Adjusted to fill height */
     background-color:  #81b7ff;
     padding-top: 20px;
     position: fixed; /* Fixed position on the screen */
     top: 0;
     left: 0;
-    margin-top: 100px; /* Adjust as necessary */
-}
-
-/* Adjust .sidebar if necessary */
-.sidebar {
-    width: 150px;
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-right: 1px solid #ddd;
-    margin-left: 170px; /* Position to the right of .sBar */
-    margin-top: 0;
-    position: fixed; /* Fixed position on the screen */
-    height: 100%; /* Full height */
+    margin-top: 66px; /* Adjust as necessary */
 }
 
 
@@ -83,6 +72,7 @@
     display: flex;
     align-items: center;
     transition: background-color 0.3s ease;
+    font-size: 11px
 }
 
 .sBar ul li a i {
@@ -105,8 +95,8 @@
     position: fixed; /* Fixed position to stay on the right side */
     right: 0; /* Align to the right edge */
     top: 0; /* Align to the top edge */
-    height: 87vh; /* Full viewport height */
-    top: 100px;
+    height: 92vh; /* Full viewport height */
+    top: 67px;
 }
 
 /* Ensure it appears below the navbar */
@@ -154,10 +144,10 @@
 .table-container {
     width: calc(100% - 10px); /* Adjust container width */
     overflow-x: auto;
-    max-height: 500px;
+    max-height: 198px;
     position: fixed;
-    top: 120px;
-    right: 115px;
+    top: 82px;
+    right: 130px;
     background: #ffffff;
     border-radius: 5px;
     max-width: 1200px;
@@ -168,13 +158,15 @@ table {
     width: 100%;
     border-collapse: collapse;
     table-layout: auto; /* Let the table adjust column widths */
+  
 }
 
 th, td {
-    padding: 13px;
+    padding: 7px;
     text-align: left;
     border-bottom: 1px solid #ddd;
     word-wrap: break-word; /* Allow long words to wrap to next line */
+  
 }
 
 th {
@@ -182,50 +174,69 @@ th {
     color: white;
     font-weight: normal;
     white-space: nowrap;
-    padding: 10px;
+    padding: 7px;
+ 
   
+}
+td{
+    font-size: 11px;
 }
 
 /* Ensure column width for better readability */
 th:nth-child(1), td.checkbox-column {
-    width: 25px;
+    width: 35px;
 }
 
 th:nth-child(2), td:nth-child(2) {
-    width: 100px; /* Adjust as needed */
+    width: 90px; /* Adjust as needed */
 }
 
 th:nth-child(3), td:nth-child(3) {
-    width: 120px; /* Adjust as needed */
+    width: 110px; /* Adjust as needed */
 }
 
 th:nth-child(4), td:nth-child(4) {
-    width: 120px; /* Adjust as needed */
+    width: 130px; /* Adjust as needed */
 }
 
 th:nth-child(5), td:nth-child(5) {
-    width: 100px; /* Adjust as needed */
+    width: 70px; /* Adjust as needed */
 }
 
 th:nth-child(6), td:nth-child(6) {
-    width: 100px; /* Adjust as needed */
+    width: 90px; /* Adjust as needed */
 }
 
 th:nth-child(7), td:nth-child(7) {
-    width: 150px; /* Adjust as needed */
+    width: 160px; /* Adjust as needed */
 }
 
 th:nth-child(8), td:nth-child(8) {
     width: 150px; /* Adjust as needed */
 }
 
+/* Adjust column widths */
 th:nth-child(9), td:nth-child(9) {
-    width: 200px; /* Adjust as needed */
+    width: 120px; /* Reduced width */
 }
 
 th:nth-child(10), td:nth-child(10) {
-    width: 100px; /* Adjust as needed */
+    width: 150px;
 }
+
+/* Footer styling */
+tfoot {
+    background-color: #81b7ff;
+    font-weight: bold;
+    color: white;
+}
+
+tfoot td {
+    padding: 8px;
+    text-align: right; /* Align footer text to the right */
+    border-top: 2px solid #ddd;
+}
+
 
 /* Actions Column */
 .actions-column {
@@ -282,7 +293,7 @@ th:nth-child(10), td:nth-child(10) {
 
 
 .project-manager-title {
-    font-size: 24px; /* Adjust size as needed */
+    font-size: 12px; /* Adjust size as needed */
     font-weight: bold; /* Make text bold */
     margin: 20px auto; /* Margin for spacing */
     color: #333; /* Adjust text color */
@@ -290,19 +301,22 @@ th:nth-child(10), td:nth-child(10) {
 }
 /* Add this CSS for the project manager title */
 .project-manager-title {
-    font-size: 24px;
+    font-size: 12px;
     font-weight: bold;
     margin: 20px auto;
     color: #333;
     
 }
-
+/* Adjust .sidebar if necessary */
 .sidebar {
-    width: 150px;
+    width: 130px;
+    background-color: #f8f9fa;
     padding: 20px;
-    position: fixed;
-    top: 400px;
-    background-color: #f8f9fa; /* Example background color */
+    border-right: 1px solid #ddd;
+    margin-left: 130px; /* Position to the right of .sBar */
+    margin-top: 400px;
+    position: fixed; /* Fixed position on the screen */
+    height: 40%; /* Full height */
 }
 
 
@@ -315,9 +329,11 @@ th:nth-child(10), td:nth-child(10) {
 .menu-item {
     display: flex;
     align-items: center;
-    padding: 31px 0;
+    padding: 20px 0;
     color: #b0b0b0;
     cursor: pointer;
+    bottom: 10px;
+    
 }
 
 .menu-item.active {
@@ -349,7 +365,7 @@ th:nth-child(10), td:nth-child(10) {
 }
 
 .text {
-    font-size: 14px;
+    font-size: 10px;
 }
 
 .menu-item:hover {
@@ -373,10 +389,11 @@ th:nth-child(10), td:nth-child(10) {
     align-items: center;
     margin-right: 20px;
     cursor: pointer;
+
 }
 
 .role-item img {
-    max-width: 21px; /* Atur lebar maksimum logo */
+    max-width: 19px; /* Atur lebar maksimum logo */
     height: auto; /* Pertahankan proporsi asli */
     margin-right: 10px;
 }
@@ -384,12 +401,12 @@ th:nth-child(10), td:nth-child(10) {
 
 .role-item.active .role-text {
     color:#007bff;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .role-item:not(.active) .role-text {
     color: rgb(95, 95, 95);
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .role-item.active img {
@@ -515,4 +532,14 @@ th:nth-child(10), td:nth-child(10) {
     display: block;
 }
 
+.floating-buttons {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    margin-left:-8%;
+}
+
+.floating-buttons button {
+    margin: 5px;
+}
 

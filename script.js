@@ -2,15 +2,70 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectAllCheckbox = document.getElementById('selectAll');
     const rowCheckboxes = document.querySelectorAll('.row-checkbox');
     const rectangleBox = document.querySelector('.rectangle-box');
+    const tableBody = document.getElementById('dataTable').querySelector('tbody');
+    const insertBtn = document.getElementById('insertBtn');
+    const deactivateBtn = document.getElementById('deactivateBtn');
+    const floatingButtons = document.getElementById('floatingButtons');
 
-    // Update rectangle box content when a row checkbox is changed
-    rowCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-            updateRectangleBox();
+     // Update the rectangle box based on selected checkboxes
+     function updateRectangleBox() {
+        rectangleBox.innerHTML = ''; // Clear existing content
+        rowCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                const row = checkbox.closest('tr');
+                const data = {
+                    title: row.cells[1].textContent,
+                    no_tsrf: row.cells[1].textContent,
+                    date: row.cells[2].textContent,
+                    target_date: row.cells[3].textContent,
+                    work_category: row.cells[4].textContent,
+                    divisi: row.cells[5].textContent,
+                    costumer: row.cells[6].textContent,
+                    end_costumer: row.cells[7].textContent,
+                    judul: row.cells[8].textContent,
+                    status: row.cells[9].textContent
+                };
+
+                const accordion = createAccordion(data);
+                rectangleBox.appendChild(accordion);
+            }
         });
-    });
+    }
 
-    // Select or deselect all checkboxes when the "Select All" checkbox is changed
+    // Function to create accordion
+    function createAccordion(data) {
+        const accordion = document.createElement('div');
+        accordion.className = 'accordion';
+
+        const header = document.createElement('div');
+        header.className = 'accordion-header';
+        header.textContent = data.title;
+
+        const body = document.createElement('div');
+        body.className = 'accordion-body';
+        body.innerHTML = `
+            <p>TSF: ${data.no_tsrf}</p>
+            <p>Date: ${data.date}</p>
+            <p>Target Date: ${data.target_date}</p>
+            <p>WC: ${data.work_category}</p>
+            <p>Divisi: ${data.divisi}</p>
+            <p>Customer: ${data.costumer}</p>
+            <p>End Customer: ${data.end_costumer}</p>
+            <p>Judul: ${data.judul}</p>
+            <p>Status: ${data.status}</p>
+        `;
+
+        accordion.appendChild(header);
+        accordion.appendChild(body);
+
+        header.addEventListener('click', function () {
+            body.classList.toggle('active');
+        });
+
+        return accordion;
+    }
+
+    // Handle checkbox change event for "Select All"
     selectAllCheckbox.addEventListener('change', function () {
         const isChecked = selectAllCheckbox.checked;
         rowCheckboxes.forEach(checkbox => {
@@ -19,126 +74,133 @@ document.addEventListener('DOMContentLoaded', function () {
         updateRectangleBox();
     });
 
-    // Function to update rectangle box content based on selected rows
-    function updateRectangleBox() {
-        rectangleBox.innerHTML = '';
-        const checkedRows = document.querySelectorAll('.row-checkbox:checked');
-
-        checkedRows.forEach(checkbox => {
-            const row = checkbox.closest('tr');
-            const cells = row.querySelectorAll('td');
-
-            const accordionItem = `
-                <div class="accordion">
-                    <div class="accordion-header">TSRF No: ${cells[1].innerText} | ${cells[7].innerText}</div>
-                    <div class="accordion-body">
-                        <p>Date: ${cells[2].innerText}</p>
-                        <p>Target Date: ${cells[3].innerText}</p>
-                        <p>Work Category: ${cells[4].innerText}</p>
-                        <p>Divisi: ${cells[5].innerText}</p>
-                        <p>Customer: ${cells[6].innerText}</p>
-                        <p>End Customer: ${cells[7].innerText}</p>
-                        <p>Status: ${cells[9].innerText}</p>
-                    </div>
-                </div>
-            `;
-            rectangleBox.insertAdjacentHTML('beforeend', accordionItem);
+    // Handle individual row checkbox change event
+    rowCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            updateRectangleBox();
         });
+    });
 
-        // Toggle accordion body visibility when header is clicked
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-        accordionHeaders.forEach(header => {
-            header.addEventListener('click', function () {
-                const body = this.nextElementSibling;
-                body.classList.toggle('active');
-            });
-        });
+    // Attach event listeners to the table body for actions button using event delegation
+    tableBody.addEventListener('click', function (event) {
+        if (event.target.closest('.actions-btn')) {
+            const button = event.target.closest('.actions-btn');
+            const row = button.closest('tr');
+            showFloatingButtons(event, floatingButtons);
+            event.stopPropagation(); // Prevent click event from hiding the buttons
+        }
+    });
+
+    // Function to handle showing floating buttons
+    function showFloatingButtons(event, floatingButtons) {
+        const rect = event.target.getBoundingClientRect();
+        const top = rect.top + window.scrollY + rect.height;
+        const left = rect.left + window.scrollX - 20; // Adjusted to move slightly to the left
+
+        floatingButtons.style.top = `${top}px`;
+        floatingButtons.style.left = `${left}px`;
+        floatingButtons.style.display = 'block';
     }
 
-    // Inline editing with contenteditable cells
-    document.querySelectorAll('.editable-table td[contenteditable]').forEach(cell => {
-        cell.addEventListener('blur', function () {
-            const row = this.closest('tr');
-            const id = row.dataset.rowId;
-            const columnIndex = this.cellIndex;
-            const newValue = this.innerText;
+    // Insert button functionality
+    insertBtn.addEventListener('click', function () {
+        const clickedRow = document.querySelector('.actions-btn')?.closest('tr');
 
-            const columns = [
-                'no_tsrf', 'date', 'target_date', 'work_category', 'divisi',
-                'costumer', 'end_costumer', 'judul', 'status'
-            ];
+        if (clickedRow) {
+            const newRow = document.createElement('tr');
 
-            // Adjust index for editable columns (starting from columnIndex 1)
-            const columnName = columns[columnIndex - 1];
+            newRow.innerHTML = `    
+                <td class='checkbox-column'><input type='checkbox' class='row-checkbox'></td>
+                <td contenteditable='true'></td>
+                <td contenteditable='true'></td>
+                <td contenteditable='true'></td>
+                <td contenteditable='true'></td>
+                <td contenteditable='true'></td>
+                <td contenteditable='true'></td>    
+                <td contenteditable='true'></td>
+                <td contenteditable='true'></td>
+                <td contenteditable='true'></td>
+                <td class='actions-column'>
+                    <button class='actions-btn'>
+                        <img src='elipses.png' alt='Actions'>
+                    </button>
+                    <button class='save-btn'>Save</button> <!-- Save button -->
+                </td>
+            `;
 
-            if (columnName) {
-                fetch('update_table.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id: id,
-                        column: columnName,
-                        value: newValue
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        console.log('Update successful');
-                    } else {
-                        console.error('Update failed');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-            } else {
-                console.error('Invalid column index');
-            }
-        });
-    });
+            clickedRow.parentNode.insertBefore(newRow, clickedRow.nextSibling);
 
-    // Add a new row when "Insert" button is clicked
-    document.getElementById('insertButton').addEventListener('click', function() {
-        var tableBody = document.querySelector('#dataTable tbody');
-        var newRow = document.createElement('tr');
+            // Attach event listener for the Save button on the new row
+            const saveButton = newRow.querySelector('.save-btn');
+            saveButton.addEventListener('click', function () {
+                console.log('Save button clicked'); // Debugging log
+                saveNewRowData(newRow); // Call function to save data
+            });
 
-        for (var i = 0; i < 10; i++) {
-            var newCell = document.createElement('td');
-            var inputField = document.createElement('input');
-            inputField.setAttribute('type', 'text');
-            inputField.classList.add('form-control');
-            newCell.appendChild(inputField);
-            newCell.contentEditable = true;
-            newRow.appendChild(newCell);
+            // Hide floating buttons after insertion
+            floatingButtons.style.display = 'none';
         }
-
-        tableBody.appendChild(newRow);
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const actionsBtns = document.querySelectorAll('.actions-btn');
-        const actionsMenu = document.getElementById('actionsMenu');
-    
-        actionsBtns.forEach(button => {
-            button.addEventListener('mouseover', function() {
-                actionsMenu.style.display = 'block'; // Show menu
-                const rect = button.getBoundingClientRect();
-                actionsMenu.style.left = `${rect.right}px`;
-                actionsMenu.style.top = `${rect.top}px`;
-            });
-    
-            button.addEventListener('mouseout', function() {
-                actionsMenu.style.display = 'none'; // Hide menu
-            });
+    // Function to save new row data
+    function saveNewRowData(newRow) {
+        const cells = newRow.querySelectorAll('td[contenteditable]');
+        const data = {
+            no_tsrf: cells[0].innerText,
+            date: cells[1].innerText,
+            target_date: cells[2].innerText,
+            work_category: cells[3].innerText,
+            divisi: cells[4].innerText,
+            costumer: cells[5].innerText,
+            end_costumer: cells[6].innerText,
+            judul: cells[7].innerText,
+            status: cells[8].innerText
+        };
+
+        console.log('Data to save:', data); // Debugging log
+
+        // Send data to the server to be saved
+        fetch('insert_row.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    alert('Data saved successfully!');
+                    console.log('Save response:', data); // Debugging log
+                } else {
+                    alert('Failed to save data.');
+                    console.error('Save failed:', data); // Debugging log
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Deactivate button functionality
+        document.getElementById('deactivateBtn').addEventListener('click', function() {
+        // Mengambil semua kolom dengan class 'deactivate-column'
+        var columns = document.querySelectorAll('.deactivate-column');
+        
+        // Menyembunyikan kolom
+        columns.forEach(function(column) {
+            column.style.display = 'none';
         });
-    
-        // Optional: Hide menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!actionsMenu.contains(event.target) && !event.target.classList.contains('actions-btn')) {
-                actionsMenu.style.display = 'none';
+        
+        // Menyembunyikan sel pada setiap baris
+        var rows = document.querySelectorAll('#dataTable td');
+        rows.forEach(function(cell) {
+            if (cell.classList.contains('deactivate-column')) {
+                cell.style.display = 'none';
             }
         });
     });
-    
 });
